@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-6 offset-3 mx-auto">
+    <form>
+      <fieldset>
+        <legend class="col-4 offset-1 mx-auto">Registration</legend>
+        <div class="form-group">
+          <label for="firstName">Full name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fullName"
+            placeholder="Full name"
+          />
+        </div>
+        <div class="form-group">
+          <ngx-intl-tel-input
+            [searchCountryFlag]="true"
+            [preferredCountries]="preferedCountries"
+            [cssClass]="'custom form-control'"
+          >
+          </ngx-intl-tel-input>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Enter email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Confirm Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder=" Confirm password"
+          />
+        </div>
+        <div class="col-4 offset-1 mx-auto">
+          <button type="submit" class="btn btn-primary btn-block mx-auto">
+            Submit
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
