@@ -1,55 +1,116 @@
 <div class="row">
   <div class="col-6 offset-3 mx-auto">
-    <form>
+    <form [formGroup]="form" (submit)="onSubmit()">
       <fieldset>
         <legend class="col-4 offset-1 mx-auto">Registration</legend>
+
         <div class="form-group">
           <label for="firstName">Full name</label>
           <input
+            id="fullName"
+            name="fullName"
+            formControlName="fullName"
             type="text"
             class="form-control"
-            id="fullName"
             placeholder="Full name"
+            [class.is-invalid]="fullName.errors && fullName.touched"
           />
+          <div *ngIf="fullName.errors && fullName.touched">
+            <div class="text-danger" *ngIf="fullName.errors.required">
+              Full name is required
+            </div>
+            <div
+              class="text-danger"
+              *ngIf="fullName.errors.minlength || fullName.errors.maxlength"
+            >
+              Full name must be between 5 and 20 characters
+            </div>
+          </div>
         </div>
+
         <div class="form-group">
-          <ngx-intl-tel-input
-            [searchCountryFlag]="true"
-            [preferredCountries]="preferedCountries"
-            [cssClass]="'custom form-control'"
-          >
-          </ngx-intl-tel-input>
+          <label for="phone">Phone</label>
+          <div>
+            <ngx-intl-tel-input
+              id="phone"
+              name="phone"
+              formControlName="phone"
+              [onlyCountries]="preferedCountries"
+              [cssClass]="'custom form-control'"
+              [maxLength]="15"
+              [phoneValidation]="true"
+            >
+            </ngx-intl-tel-input>
+          </div>
         </div>
+
         <div class="form-group">
           <label for="email">Email address</label>
           <input
+            id="email"
+            name="email"
+            formControlName="email"
             type="email"
             class="form-control"
-            id="email"
             placeholder="Enter email"
+            [class.is-invalid]="email.errors && email.touched"
           />
+          <div *ngIf="email.errors && email.touched">
+            <div class="text-danger" *ngIf="email.errors.required">
+              Email is required
+            </div>
+            <div class="text-danger" *ngIf="email.errors.email">
+              Email format is incorrect
+            </div>
+          </div>
         </div>
+
         <div class="form-group">
           <label for="password">Password</label>
           <input
+            id="password"
+            name="password"
+            formControlName="password"
             type="password"
             class="form-control"
-            id="password"
             placeholder="Password"
+            [class.is-invalid]="password.errors && password.touched"
           />
+          <div *ngIf="password.errors && password.touched">
+            <div class="text-danger" *ngIf="password.errors.required">
+              Password is required
+            </div>
+            <div
+              class="text-danger"
+              *ngIf="password.errors.minlength || password.errors.maxlength"
+            >
+              Password must be between 8 and 20 characters
+            </div>
+          </div>
         </div>
+
         <div class="form-group">
           <label for="password">Confirm Password</label>
           <input
+            id="confirmPassword"
+            name="confirmPassword"
+            formControlName="confirmPassword"
             type="password"
             class="form-control"
-            id="password"
             placeholder=" Confirm password"
           />
+          <div class="text-danger" *ngIf="form.getError('misMatch')">
+            Password do not match
+          </div>
         </div>
+
         <div class="col-4 offset-1 mx-auto">
-          <button type="submit" class="btn btn-primary btn-block mx-auto">
-            Submit
+          <button
+            type="submit"
+            class="btn btn-primary btn-block mx-auto"
+            [disabled]="form.invalid"
+          >
+            Register
           </button>
         </div>
       </fieldset>
