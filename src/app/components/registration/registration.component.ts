@@ -1,7 +1,10 @@
+import { User } from './../../models/user';
+import { UserService } from './../../services/user.service';
 import { PasswordValidator } from './../../validators/password.validator';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CountryISO } from 'ngx-intl-tel-input';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -11,8 +14,13 @@ import { CountryISO } from 'ngx-intl-tel-input';
 export class RegistrationComponent implements OnInit {
   preferedCountries = [CountryISO.Morocco];
   form: FormGroup;
+  user: User = new User();
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group(
@@ -42,7 +50,21 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    this.user.fullName = this.fullName.value;
+    let phoneLength = this.phone.value.number.length;
+    this.user.phone = '0' + this.phone.value.number.substring(phoneLength - 9);
+    this.user.email = this.email.value;
+    this.user.password = this.password.value;
+    this.user.roles = 'admin';
+
+    this.userService.create(this.user).subscribe(
+      (res) => {
+        this.toastr.success('User created successfully', 'Eat it');
+      },
+      (error) => {
+        this.toastr.error(error.error.message, 'Eat it');
+      }
+    );
   }
 
   get fullName() {
