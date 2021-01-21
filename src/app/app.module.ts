@@ -10,9 +10,10 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, RegistrationComponent],
+  declarations: [AppComponent, NavBarComponent, RegistrationComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
