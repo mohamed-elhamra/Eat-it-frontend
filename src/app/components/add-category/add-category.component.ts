@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from './../../services/category.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -11,10 +12,12 @@ import { ChangeData } from 'ngx-intl-tel-input';
 export class AddCategoryComponent implements OnInit {
   form: FormGroup;
   image: File;
+  invalidInputFile: boolean = true;
 
   constructor(
     private fb: FormBuilder,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -30,10 +33,21 @@ export class AddCategoryComponent implements OnInit {
     });
   }
 
-  onFileChange(event) {
+  onFileChange(event, fileInput) {
+    const extions: string[] = ['JPEG', 'PNG', 'JPG', 'jpeg', 'png', 'jpg'];
     if (event.target.files.length > 0) {
       const image = event.target.files[0];
-      this.image = image;
+      if (extions.includes(image.name.split('.')[1])) {
+        this.invalidInputFile = false;
+        this.image = image;
+      } else {
+        this.invalidInputFile = true;
+        this.toastr.warning(
+          'File extension allowed (png, jpeg, jpg)',
+          'Eat it'
+        );
+        fileInput.value = '';
+      }
     }
   }
 

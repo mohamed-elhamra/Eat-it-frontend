@@ -34,16 +34,17 @@
             id="image"
             name="image"
             type="file"
+            #fileInput
             class="form-control-file"
             aria-describedby="fileHelp"
-            (change)="onFileChange($event)"
+            (change)="onFileChange($event, fileInput)"
           />
         </div>
 
         <button
           type="submit"
           class="btn btn-primary btn-block mx-auto"
-          [disabled]="form.invalid"
+          [disabled]="form.invalid || invalidInputFile"
         >
           Create
         </button>

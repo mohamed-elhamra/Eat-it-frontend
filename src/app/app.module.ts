@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { AddCategoryComponent } from './components/add-category/add-category.component';
 import { JwtInterceptor } from './services/jwt.interceptor';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { JwtInterceptor } from './services/jwt.interceptor';
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     {
