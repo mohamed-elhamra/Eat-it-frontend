@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AccountService } from './../../services/account.service';
 import { TokenService } from './../../services/token.service';
 import { UserService } from './../../services/user.service';
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private toaster: ToastrService,
     private tokenService: TokenService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
         this.tokenService.handle(res);
         this.accountService.changeStaus(true);
         this.toaster.success('Login successfully', 'Eat it');
+        this.router.navigateByUrl('/category/create');
       },
       (error) => {
         this.toaster.error('Bad credentials, try again', 'Eat it');

@@ -9,11 +9,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
+import { AddCategoryComponent } from './components/add-category/add-category.component';
+import { JwtInterceptor } from './services/jwt.interceptor';
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, RegistrationComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    RegistrationComponent,
+    LoginComponent,
+    AddCategoryComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,7 +32,13 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

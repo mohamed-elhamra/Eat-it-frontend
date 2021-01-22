@@ -1,0 +1,53 @@
+<div class="row mt-5">
+  <div class="col-6 mx-auto">
+    <form [formGroup]="form" (submit)="create()">
+      <fieldset>
+        <legend class="col-6 mx-auto">Create category</legend>
+
+        <div class="form-group">
+          <label for="name">Category name</label>
+          <input
+            id="name"
+            name="name"
+            formControlName="name"
+            type="name"
+            class="form-control"
+            placeholder="Enter email"
+            [class.is-invalid]="name.errors && name.touched"
+          />
+          <div *ngIf="name.errors && name.touched">
+            <div class="text-danger" *ngIf="name.errors.required">
+              Category name is required
+            </div>
+            <div
+              class="text-danger"
+              *ngIf="name.errors.minlength || name.errors.maxlength"
+            >
+              Category name must be between 2 and 20 characters
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="image">File input</label>
+          <input
+            id="image"
+            name="image"
+            type="file"
+            class="form-control-file"
+            aria-describedby="fileHelp"
+            (change)="onFileChange($event)"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary btn-block mx-auto"
+          [disabled]="form.invalid"
+        >
+          Create
+        </button>
+      </fieldset>
+    </form>
+  </div>
+</div>
