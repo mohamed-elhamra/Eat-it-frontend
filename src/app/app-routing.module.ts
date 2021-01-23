@@ -1,3 +1,4 @@
+import { ListProductComponent } from './components/list-product/list-product.component';
 import { ListCategoryComponent } from './components/list-category/list-category.component';
 import { AddCategoryComponent } from './components/add-category/add-category.component';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'create', component: AddCategoryComponent },
     ],
   },
+  { path: 'product/:id', component: ListProductComponent },
 ];
 
 @NgModule({

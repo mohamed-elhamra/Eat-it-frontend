@@ -26,4 +26,10 @@ export class CategoryService {
       `${environment.apiURL}/categories`
     );
   }
+
+  delete(categoryPublicId: string) {
+    return this.http.delete(
+      `${environment.apiURL}/categories/${categoryPublicId}`
+    );
+  }
 }

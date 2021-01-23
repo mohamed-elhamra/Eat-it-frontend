@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { User } from './../../models/user';
 import { UserService } from './../../services/user.service';
 import { PasswordValidator } from './../../validators/password.validator';
@@ -5,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CountryISO } from 'ngx-intl-tel-input';
 import { ToastrService } from 'ngx-toastr';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-registration',
@@ -19,7 +21,8 @@ export class RegistrationComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -60,6 +63,7 @@ export class RegistrationComponent implements OnInit {
     this.userService.create(this.user).subscribe(
       (res) => {
         this.toastr.success('User created successfully', 'Eat it');
+        this.router.navigateByUrl('/login');
       },
       (error) => {
         this.toastr.error(error.error.message, 'Eat it');

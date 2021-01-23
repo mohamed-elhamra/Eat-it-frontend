@@ -39,7 +39,21 @@ export class ListCategoryComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!',
     }).then((res) => {
       if (res.value) {
-        console.log('deleted seccessfully');
+        this.categoryService.delete(publicId).subscribe(
+          (res) => {
+            this.categories = this.categories.filter(
+              (category) => category.publicId !== publicId
+            );
+            this.toastr.success(
+              'The category was deleted successfully',
+              'Eat it'
+            );
+          },
+          (err) => {
+            this.toastr.error('Something went wrong, try later', 'Eat it');
+            console.log(err);
+          }
+        );
       }
     });
   }
