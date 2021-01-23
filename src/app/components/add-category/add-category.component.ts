@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from './../../services/category.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,7 +18,8 @@ export class AddCategoryComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private categoryService: CategoryService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -54,10 +56,14 @@ export class AddCategoryComponent implements OnInit {
   create() {
     this.categoryService.create(this.name.value, this.image).subscribe(
       (res) => {
-        console.log(res);
+        this.toastr.success(
+          `${res.name} category cereated successfully`,
+          'Eat it'
+        );
+        this.router.navigateByUrl('/category');
       },
       (err) => {
-        console.log(err);
+        this.toastr.error('Something went wrong, try later', 'Eat it');
       }
     );
   }

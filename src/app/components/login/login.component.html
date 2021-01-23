@@ -1,9 +1,13 @@
 <div class="row mt-5">
+  <div class="mx-auto">
+    <h2>Sign in</h2>
+  </div>
+</div>
+
+<div class="row mt-4">
   <div class="col-6 mx-auto">
     <form [formGroup]="form" (submit)="login()">
       <fieldset>
-        <legend class="col-4 mx-auto">Sign in</legend>
-
         <div class="form-group">
           <label for="email">Email address</label>
           <input
@@ -51,7 +55,7 @@
 
         <button
           type="submit"
-          class="btn btn-primary btn-block mx-auto"
+          class="btn btn-primary btn-block"
           [disabled]="form.invalid"
         >
           Login
