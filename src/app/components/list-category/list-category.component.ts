@@ -51,7 +51,6 @@ export class ListCategoryComponent implements OnInit {
           },
           (err) => {
             this.toastr.error('Something went wrong, try later', 'Eat it');
-            console.log(err);
           }
         );
       }

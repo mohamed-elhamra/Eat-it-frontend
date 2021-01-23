@@ -1,1 +1,40 @@
-<p>list-product works!</p>
+<div class="row my-3">
+  <div class="mx-auto">
+    <h2>List of products</h2>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col-md-4" *ngFor="let product of products">
+    <div class="card border-primary mb-3 mx-auto" style="max-width: 20rem">
+      <div class="card-header">
+        <strong>{{ product.name }}</strong>
+      </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <img class="rounded img-responsive" [src]="product.imageUrl" />
+          </li>
+
+          <li class="list-group-item">
+            <strong>Price: </strong>{{ product.price }} DH
+          </li>
+
+          <li class="list-group-item">
+            <p class="card-text">{{ product.description }}</p>
+          </li>
+
+          <li class="list-group-item text-center">
+            <button
+              type="button"
+              class="btn btn-secondary btn-block"
+              data-dismiss="modal"
+            >
+              Delete
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { ProductResponse } from './../models/product.response';
 import { CategoryResponse } from './../models/category.response';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -30,6 +31,12 @@ export class CategoryService {
   delete(categoryPublicId: string) {
     return this.http.delete(
       `${environment.apiURL}/categories/${categoryPublicId}`
+    );
+  }
+
+  getProducts(categoryPublicId: string): Observable<ProductResponse[]> {
+    return this.http.get<ProductResponse[]>(
+      `${environment.apiURL}/categories/${categoryPublicId}/products`
     );
   }
 }
