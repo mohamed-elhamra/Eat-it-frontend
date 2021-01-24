@@ -17,6 +17,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ListCategoryComponent } from './components/list-category/list-category.component';
 import { ListProductComponent } from './components/list-product/list-product.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { AllProductComponent } from './components/all-product/all-product.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     ListCategoryComponent,
     ListProductComponent,
     AddProductComponent,
+    AllProductComponent,
   ],
   imports: [
     BrowserModule,

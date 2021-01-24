@@ -1,3 +1,4 @@
+import { AllProductComponent } from './components/all-product/all-product.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { ListProductComponent } from './components/list-product/list-product.component';
 import { ListCategoryComponent } from './components/list-category/list-category.component';
@@ -16,13 +17,14 @@ const routes: Routes = [
     children: [
       { path: '', component: ListCategoryComponent },
       { path: 'create', component: AddCategoryComponent },
+      { path: ':categoryId', component: ListProductComponent },
     ],
   },
   {
     path: 'product',
     children: [
+      { path: '', component: AllProductComponent },
       { path: 'create', component: AddProductComponent },
-      { path: ':categoryId', component: ListProductComponent },
     ],
   },
 ];
