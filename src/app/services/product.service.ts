@@ -29,4 +29,8 @@ export class ProductService {
       formData
     );
   }
+
+  delete(id: string) {
+    return this.http.delete(`${environment.apiURL}/products/${id}`);
+  }
 }

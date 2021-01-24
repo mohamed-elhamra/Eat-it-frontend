@@ -1,8 +1,10 @@
+import { ProductService } from './../../services/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { ProductResponse } from './../../models/product.response';
 import { CategoryService } from './../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2/dist/sweetalert2.all.js';
 
 @Component({
   selector: 'app-list-product',
@@ -15,7 +17,8 @@ export class ListProductComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private activedRoute: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private productService: ProductService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +37,36 @@ export class ListProductComponent implements OnInit {
           this.toastr.error('Something went wrong, try later', 'Eat it');
         }
       );
+    });
+  }
+
+  delete(id: string) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((res) => {
+      if (res.value) {
+        this.productService.delete(id).subscribe(
+          (res) => {
+            this.products = this.products.filter(
+              (product) => product.publicId !== id
+            );
+            this.toastr.success(
+              'The products was deleted successfully',
+              'Eat it'
+            );
+          },
+          (err) => {
+            console.log(err);
+            this.toastr.error('Something went wrong, try later', 'Eat it');
+          }
+        );
+      }
     });
   }
 }

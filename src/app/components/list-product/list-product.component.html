@@ -21,7 +21,9 @@
           </li>
 
           <li class="list-group-item">
-            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text">
+              <strong>Description: </strong> {{ product.description }}
+            </p>
           </li>
 
           <li class="list-group-item text-center">
@@ -29,6 +31,7 @@
               type="button"
               class="btn btn-secondary btn-block"
               data-dismiss="modal"
+              (click)="delete(product.publicId)"
             >
               Delete
             </button>
