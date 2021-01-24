@@ -1,3 +1,4 @@
+import { AddProductComponent } from './components/add-product/add-product.component';
 import { ListProductComponent } from './components/list-product/list-product.component';
 import { ListCategoryComponent } from './components/list-category/list-category.component';
 import { AddCategoryComponent } from './components/add-category/add-category.component';
@@ -7,7 +8,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   {
@@ -17,7 +18,13 @@ const routes: Routes = [
       { path: 'create', component: AddCategoryComponent },
     ],
   },
-  { path: 'product/:categoryId', component: ListProductComponent },
+  {
+    path: 'product',
+    children: [
+      { path: 'create', component: AddProductComponent },
+      { path: ':categoryId', component: ListProductComponent },
+    ],
+  },
 ];
 
 @NgModule({

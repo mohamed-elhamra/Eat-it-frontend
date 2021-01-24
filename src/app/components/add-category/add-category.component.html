@@ -14,9 +14,9 @@
             id="name"
             name="name"
             formControlName="name"
-            type="name"
+            type="text"
             class="form-control"
-            placeholder="Enter email"
+            placeholder="Category name"
             [class.is-invalid]="name.errors && name.touched"
           />
           <div *ngIf="name.errors && name.touched">

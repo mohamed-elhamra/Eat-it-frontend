@@ -16,6 +16,7 @@ import { JwtInterceptor } from './services/jwt.interceptor';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ListCategoryComponent } from './components/list-category/list-category.component';
 import { ListProductComponent } from './components/list-product/list-product.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ListProductComponent } from './components/list-product/list-product.com
     AddCategoryComponent,
     ListCategoryComponent,
     ListProductComponent,
+    AddProductComponent,
   ],
   imports: [
     BrowserModule,
