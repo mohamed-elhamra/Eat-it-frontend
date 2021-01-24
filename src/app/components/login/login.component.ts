@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         this.tokenService.handle(res);
         this.accountService.changeStaus(true);
         this.toaster.success('Login successfully', 'Eat it');
-        this.router.navigateByUrl('/category/create');
+        this.router.navigateByUrl('/category');
       },
       (error) => {
         this.toaster.error('Bad credentials, try again', 'Eat it');

@@ -23,6 +23,11 @@ export class ListProductComponent implements OnInit {
       const categoryId = params.get('categoryId');
       this.categoryService.getProducts(categoryId).subscribe(
         (res) => {
+          if (res.length == 0)
+            this.toastr.warning(
+              'There is no product in this category',
+              'Eat it'
+            );
           this.products = res;
         },
         (err) => {
