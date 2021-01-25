@@ -1,3 +1,4 @@
+import { ManageOrdersComponent } from './components/manage-orders/manage-orders.component';
 import { AfterAuthGuard } from './security/after-auth.guard';
 import { BeforeAuthGuard } from './security/before-auth.guard';
 import { AllProductComponent } from './components/all-product/all-product.component';
@@ -19,6 +20,11 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent, canActivate: [AfterAuthGuard] },
   { path: 'register', component: RegistrationComponent },
+  {
+    path: 'orders',
+    component: ManageOrdersComponent,
+    canActivate: [BeforeAuthGuard],
+  },
   {
     path: 'category',
     canActivate: [BeforeAuthGuard],

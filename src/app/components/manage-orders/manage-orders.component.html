@@ -1,1 +1,84 @@
+<div class="row mt-5">
+  <div class="mx-auto">
+    <h2>Choose a category</h2>
+  </div>
+</div>
 
+<div class="row mb-5 mt-1">
+  <div class="col-6 mx-auto">
+    <form [formGroup]="form" (submit)="search()">
+      <fieldset>
+        <div class="form-group">
+          <input
+            id="id"
+            name="id"
+            formControlName="id"
+            type="text"
+            class="form-control"
+            placeholder="Order ID"
+            [class.is-invalid]="id.errors && id.touched"
+          />
+          <div *ngIf="id.errors && id.touched">
+            <div class="text-danger" *ngIf="id.errors.required">
+              Order id is required
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          [disabled]="form.invalid"
+        >
+          Search
+        </button>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+<div class="jumbotron row mb-5 mt-1" *ngIf="order.publicId != ''">
+  <div class="mx-auto mb-3">
+    <h3>Order details</h3>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Address</th>
+        <th scope="col">Date</th>
+        <th scope="col">Client</th>
+        <th scope="col">Total (DH)</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <th scope="row">{{ order.publicId }}</th>
+      <td>{{ order.address }}</td>
+      <td>{{ order.date | date: "medium" }}</td>
+      <td>{{ order.userPublicId }}</td>
+      <td>{{ getTotal() }}</td>
+      <td><img src="./../../../assets/images/{{ order.status }}.png" /></td>
+    </tbody>
+  </table>
+
+  <div class="mx-auto mt-2 mb-3">
+    <h3>Products</h3>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Product name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let orderProduct of order.orderProducts">
+      <th scope="row">{{ orderProduct.productPublicId }}</th>
+      <td>{{ orderProduct.productName }}</td>
+      <td>{{ orderProduct.quantity }}</td>
+      <td>{{ orderProduct.price }}</td>
+    </tbody>
+  </table>
+</div>
