@@ -1,3 +1,5 @@
+import { AfterAuthGuard } from './security/after-auth.guard';
+import { BeforeAuthGuard } from './security/before-auth.guard';
 import { AllProductComponent } from './components/all-product/all-product.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { ListProductComponent } from './components/list-product/list-product.component';
@@ -9,11 +11,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  {
+    path: '',
+    redirectTo: 'category',
+    pathMatch: 'full',
+    canActivate: [BeforeAuthGuard],
+  },
+  { path: 'login', component: LoginComponent, canActivate: [AfterAuthGuard] },
   { path: 'register', component: RegistrationComponent },
   {
     path: 'category',
+    canActivate: [BeforeAuthGuard],
     children: [
       { path: '', component: ListCategoryComponent },
       { path: 'create', component: AddCategoryComponent },
@@ -22,6 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'product',
+    canActivate: [BeforeAuthGuard],
     children: [
       { path: '', component: AllProductComponent },
       { path: 'create', component: AddProductComponent },

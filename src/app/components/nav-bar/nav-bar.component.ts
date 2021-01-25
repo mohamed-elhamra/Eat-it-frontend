@@ -27,7 +27,7 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this.tokenService.remove();
-    this.accountService.changeStaus(false);
+    this.accountService.changeStatus(false);
     this.toastr.error('See you soon', 'Eat it');
     this.router.navigateByUrl('/login');
   }

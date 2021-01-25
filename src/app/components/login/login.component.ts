@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.form.value).subscribe(
       (res) => {
         this.tokenService.handle(res);
-        this.accountService.changeStaus(true);
+        this.accountService.changeStatus(true);
         this.toaster.success('Login successfully', 'Eat it');
         this.router.navigateByUrl('/category');
       },

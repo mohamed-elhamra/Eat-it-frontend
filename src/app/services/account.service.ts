@@ -11,7 +11,7 @@ export class AccountService {
   private isLogged = new BehaviorSubject<boolean>(this.tokenService.isLogged());
   authStatus = this.isLogged.asObservable();
 
-  changeStaus(status: boolean) {
+  changeStatus(status: boolean) {
     this.isLogged.next(status);
   }
 }

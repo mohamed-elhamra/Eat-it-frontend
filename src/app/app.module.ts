@@ -18,6 +18,7 @@ import { ListCategoryComponent } from './components/list-category/list-category.
 import { ListProductComponent } from './components/list-product/list-product.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { AllProductComponent } from './components/all-product/all-product.component';
+import { ManageOrdersComponent } from './components/manage-orders/manage-orders.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AllProductComponent } from './components/all-product/all-product.compon
     ListProductComponent,
     AddProductComponent,
     AllProductComponent,
+    ManageOrdersComponent,
   ],
   imports: [
     BrowserModule,
