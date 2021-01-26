@@ -27,14 +27,28 @@
           </li>
 
           <li class="list-group-item text-center">
-            <button
-              type="button"
-              class="btn btn-secondary btn-block"
-              data-dismiss="modal"
-              (click)="delete(product.publicId)"
-            >
-              Delete
-            </button>
+            <div class="row">
+              <div class="col-md-6">
+                <button
+                  type="button"
+                  class="btn btn-info btn-block mr-4"
+                  data-dismiss="modal"
+                  (click)="edit(product.publicId)"
+                >
+                  Edit
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-block mr-4"
+                  data-dismiss="modal"
+                  (click)="delete(product.publicId)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </li>
         </ul>
       </div>

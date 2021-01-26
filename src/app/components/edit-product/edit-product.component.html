@@ -1,0 +1,158 @@
+<div class="row">
+  <div class="mx-auto">
+    <h2>Edit product</h2>
+  </div>
+</div>
+
+<form [formGroup]="form">
+  <fieldset>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name">Product name</label>
+          <input
+            id="name"
+            name="name"
+            formControlName="name"
+            type="text"
+            class="form-control"
+            placeholder="Product name"
+            [class.is-invalid]="name.errors && name.touched"
+          />
+          <div *ngIf="name.errors && name.touched">
+            <div class="text-danger" *ngIf="name.errors.required">
+              Prodcut name is required
+            </div>
+            <div
+              class="text-danger"
+              *ngIf="name.errors.minlength || name.errors.maxlength"
+            >
+              Product name must be between 2 and 20 characters
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">Product price</label>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">DH</span>
+              </div>
+              <input
+                id="price"
+                name="price"
+                formControlName="price"
+                type="number"
+                class="form-control"
+                placeholder="Product price"
+                [class.is-invalid]="price.errors && price.touched"
+              />
+            </div>
+          </div>
+          <div *ngIf="price.errors && price.touched">
+            <div class="text-danger" *ngIf="price.errors.required">
+              Product price is required
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="exampleSelect1">Category</label>
+          <select
+            name="category"
+            formControlName="category"
+            class="custom-select"
+            id="category"
+            [class.is-invalid]="category.invalid && category.touched"
+          >
+            <option [selected]="true" value="">Choose category</option>
+            <option
+              *ngFor="let category of categories"
+              value="{{ category.publicId }}"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+          <div *ngIf="category.errors && category.touched">
+            <div class="text-danger" *ngIf="category.errors.required">
+              Please choose a category
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="image">Product image</label>
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <input
+                id="image"
+                name="image"
+                type="file"
+                #fileInput
+                class="custom-file-input"
+                (change)="onFileChange($event, fileInput)"
+              />
+              <label class="custom-file-label" for="inputGroupFile02"
+                >Choose file</label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        name="description"
+        formControlName="description"
+        id="description"
+        rows="3"
+        spellcheck="false"
+        minlength="15"
+        style="margin-top: 0px; margin-bottom: 0px; height: 83px"
+        [class.is-invalid]="description.errors && description.touched"
+      ></textarea>
+      <div *ngIf="description.errors && description.touched">
+        <div class="text-danger" *ngIf="description.errors.required">
+          Description is required
+        </div>
+        <div class="text-danger" *ngIf="description.errors.minlength">
+          A valid description is required
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <button
+          type="submit"
+          class="btn btn-info btn-block"
+          [disabled]="form.invalid"
+          (click)="update()"
+        >
+          Update
+        </button>
+      </div>
+      <div class="col-md-6">
+        <button
+          type="submit"
+          class="btn btn-secondary btn-block"
+          (click)="close()"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </fieldset>
+</form>

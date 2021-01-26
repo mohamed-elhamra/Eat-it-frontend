@@ -1,3 +1,4 @@
+import { EditProductComponent } from './../edit-product/edit-product.component';
 import { ProductService } from './../../services/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { ProductResponse } from './../../models/product.response';
@@ -5,6 +6,7 @@ import { CategoryService } from './../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.all.js';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list-product',
@@ -15,6 +17,7 @@ export class ListProductComponent implements OnInit {
   products: ProductResponse[];
 
   constructor(
+    private dialog: MatDialog,
     private categoryService: CategoryService,
     private activedRoute: ActivatedRoute,
     private toastr: ToastrService,
@@ -38,6 +41,36 @@ export class ListProductComponent implements OnInit {
         }
       );
     });
+  }
+
+  edit(publicId: string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '60%';
+    dialogConfig.data = publicId;
+
+    this.dialog
+      .open(EditProductComponent, dialogConfig)
+      .afterClosed()
+      .subscribe((res) => {
+        if (res) {
+          console.log(res);
+          this.products.forEach((product) => {
+            if (product.publicId == res.publicId) {
+              product.name = res.name;
+              product.price = res.price;
+              product.publicId = res.publicId;
+              product.imageUrl = res.imageUrl;
+              product.description = res.description;
+              product.categoryPublicId = res.categoryPublicId;
+            }
+          });
+          const myPorducts: ProductResponse[] = this.products.filter(
+            (product) => product.categoryPublicId != res.categoryPublicId
+          );
+          if (myPorducts.length > 0) this.products = myPorducts;
+          this.toastr.success('Product was updated successfully', 'Eat it');
+        }
+      });
   }
 
   delete(id: string) {

@@ -33,4 +33,31 @@ export class ProductService {
   delete(id: string) {
     return this.http.delete(`${environment.apiURL}/products/${id}`);
   }
+
+  getById(publicId: string): Observable<ProductResponse> {
+    return this.http.get<ProductResponse>(
+      `${environment.apiURL}/products/${publicId}`
+    );
+  }
+
+  update(
+    publicId: string,
+    name: string,
+    description: string,
+    price: string,
+    category: string,
+    image: File
+  ): Observable<ProductResponse> {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('price', price);
+    formData.append('category', category);
+    formData.append('image', image);
+
+    return this.http.patch<ProductResponse>(
+      `${environment.apiURL}/products/${publicId}`,
+      formData
+    );
+  }
 }
