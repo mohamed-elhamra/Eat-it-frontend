@@ -19,6 +19,8 @@ import { ListProductComponent } from './components/list-product/list-product.com
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { AllProductComponent } from './components/all-product/all-product.component';
 import { ManageOrdersComponent } from './components/manage-orders/manage-orders.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ChangeStatusComponent } from './components/change-status/change-status.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { ManageOrdersComponent } from './components/manage-orders/manage-orders.
     AddProductComponent,
     AllProductComponent,
     ManageOrdersComponent,
+    ChangeStatusComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { ManageOrdersComponent } from './components/manage-orders/manage-orders.
     HttpClientModule,
     ToastrModule.forRoot(),
     SweetAlert2Module.forRoot(),
+    MatDialogModule,
   ],
   providers: [
     {
@@ -51,6 +55,7 @@ import { ManageOrdersComponent } from './components/manage-orders/manage-orders.
       multi: true,
     },
   ],
+  entryComponents: [ChangeStatusComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

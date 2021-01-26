@@ -27,7 +27,7 @@
 
         <button
           type="submit"
-          class="btn btn-primary btn-block"
+          class="btn btn-success btn-block"
           [disabled]="form.invalid"
         >
           Search
@@ -38,9 +38,11 @@
 </div>
 
 <div class="jumbotron row mb-5 mt-1" *ngIf="order.publicId != ''">
-  <div class="mx-auto mb-3">
-    <h3>Order details</h3>
-  </div>
+  <h3 class="mr-auto mb-4">Order details</h3>
+
+  <button type="submit" class="btn btn-info ml-auto mb-4" (click)="onClick()">
+    Change order status
+  </button>
   <table class="table table-hover">
     <thead>
       <tr>

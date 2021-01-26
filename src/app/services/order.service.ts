@@ -15,4 +15,13 @@ export class OrderService {
       `${environment.apiURL}/orders/${publicId}`
     );
   }
+
+  updateStatus(publicId: string, status: string) {
+    const formData = new FormData();
+    formData.append('status', status);
+    return this.http.patch<OrderResponse>(
+      `${environment.apiURL}/orders/${publicId}`,
+      formData
+    );
+  }
 }
