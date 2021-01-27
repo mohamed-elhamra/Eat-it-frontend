@@ -48,12 +48,12 @@ export class ListProductComponent implements OnInit {
     dialogConfig.width = '60%';
     dialogConfig.data = publicId;
 
+    let sameCategory: boolean = true;
     this.dialog
       .open(EditProductComponent, dialogConfig)
       .afterClosed()
       .subscribe((res) => {
         if (res) {
-          console.log(res);
           this.products.forEach((product) => {
             if (product.publicId == res.publicId) {
               product.name = res.name;
@@ -61,13 +61,25 @@ export class ListProductComponent implements OnInit {
               product.publicId = res.publicId;
               product.imageUrl = res.imageUrl;
               product.description = res.description;
+              if (res.categoryPublicId != product.categoryPublicId) {
+                sameCategory = false;
+              }
               product.categoryPublicId = res.categoryPublicId;
             }
           });
-          const myPorducts: ProductResponse[] = this.products.filter(
-            (product) => product.categoryPublicId != res.categoryPublicId
-          );
-          if (myPorducts.length > 0) this.products = myPorducts;
+
+          let deletedProduct: ProductResponse = new ProductResponse();
+          for (let product of this.products) {
+            if (res.categoryPublicId == product.categoryPublicId) {
+              deletedProduct = product;
+              break;
+            }
+          }
+
+          const index: number = this.products.indexOf(deletedProduct);
+          if (index >= 0 && !sameCategory) {
+            this.products.splice(index, 1);
+          }
           this.toastr.success('Product was updated successfully', 'Eat it');
         }
       });
