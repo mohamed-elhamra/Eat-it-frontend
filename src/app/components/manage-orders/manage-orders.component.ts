@@ -1,3 +1,4 @@
+import { UserDetailsComponent } from './../user-details/user-details.component';
 import { OrderStatus } from './../../models/order-status.enum';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -52,6 +53,16 @@ export class ManageOrdersComponent implements OnInit {
         (total = total + orderProduct.price * orderProduct.quantity)
     );
     return total;
+  }
+
+  userDetails() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width = '40%';
+    dialogConfig.data = this.order.userPublicId;
+
+    this.dialog.open(UserDetailsComponent, dialogConfig);
   }
 
   onClick() {

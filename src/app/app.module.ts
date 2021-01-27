@@ -22,6 +22,7 @@ import { ManageOrdersComponent } from './components/manage-orders/manage-orders.
 import { MatDialogModule } from '@angular/material/dialog';
 import { ChangeStatusComponent } from './components/change-status/change-status.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     ManageOrdersComponent,
     ChangeStatusComponent,
     EditProductComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -58,7 +58,11 @@
       <th scope="row">{{ order.publicId }}</th>
       <td>{{ order.address }}</td>
       <td>{{ order.date | date: "medium" }}</td>
-      <td>{{ order.userPublicId }}</td>
+      <td>
+        <a href="javascript:void(0)" (click)="userDetails()">{{
+          order.userPublicId
+        }}</a>
+      </td>
       <td>{{ getTotal() }}</td>
       <td><img src="./../../../assets/images/{{ order.status }}.png" /></td>
     </tbody>

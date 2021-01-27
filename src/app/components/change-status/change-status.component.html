@@ -4,31 +4,31 @@
   </div>
 </div>
 
-<div class="row mb-5 mt-3">
-  <div class="col-6 mx-auto">
-    <form [formGroup]="form">
-      <fieldset>
-        <div class="form-group">
-          <label for="status">Order status</label>
-          <select
-            name="status"
-            formControlName="status"
-            class="custom-select"
-            id="status"
-            [class.is-invalid]="status.invalid && status.touched"
-          >
-            <option [selected]="true" value="">Choose a status</option>
-            <option *ngFor="let st of data.status" value="{{ st }}">
-              {{ st }}
-            </option>
-          </select>
-          <div *ngIf="status.errors && status.touched">
-            <div class="text-danger" *ngIf="status.errors.required">
-              Please choose a status
-            </div>
-          </div>
+<form [formGroup]="form">
+  <fieldset>
+    <div class="form-group">
+      <label for="status">Order status</label>
+      <select
+        name="status"
+        formControlName="status"
+        class="custom-select"
+        id="status"
+        [class.is-invalid]="status.invalid && status.touched"
+      >
+        <option [selected]="true" value="">Choose a status</option>
+        <option *ngFor="let st of data.status" value="{{ st }}">
+          {{ st }}
+        </option>
+      </select>
+      <div *ngIf="status.errors && status.touched">
+        <div class="text-danger" *ngIf="status.errors.required">
+          Please choose a status
         </div>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-md-6">
         <button
           type="submit"
           class="btn btn-success btn-block"
@@ -37,7 +37,8 @@
         >
           Save changes
         </button>
-
+      </div>
+      <div class="col-md-6">
         <button
           type="submit"
           class="btn btn-secondary btn-block"
@@ -45,7 +46,7 @@
         >
           Close
         </button>
-      </fieldset>
-    </form>
-  </div>
-</div>
+      </div>
+    </div>
+  </fieldset>
+</form>

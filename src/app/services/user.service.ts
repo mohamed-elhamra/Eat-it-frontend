@@ -17,4 +17,8 @@ export class UserService {
   login(data: { email: string; password: string }): Observable<any> {
     return this.http.post(`${environment.apiURL}/users/login`, data);
   }
+
+  getByPublicID(publicId: string) {
+    return this.http.get(`${environment.apiURL}/users/${publicId}`);
+  }
 }
