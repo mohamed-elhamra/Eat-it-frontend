@@ -11,6 +11,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.all.js';
 })
 export class ListCategoryComponent implements OnInit {
   categories: CategoryResponse[];
+  tempCategories: CategoryResponse[];
 
   constructor(
     private categoryService: CategoryService,
@@ -21,6 +22,7 @@ export class ListCategoryComponent implements OnInit {
     this.categoryService.getAll().subscribe(
       (res) => {
         this.categories = res;
+        this.tempCategories = res;
       },
       (err) => {
         this.toastr.error('Something went wrong, try later', 'Eat it');
@@ -55,5 +57,15 @@ export class ListCategoryComponent implements OnInit {
         );
       }
     });
+  }
+
+  search(event: any) {
+    const keyWord: string = event.target.value;
+    if (!keyWord) {
+      this.categories = this.tempCategories;
+    }
+    this.categories = this.tempCategories.filter((category) =>
+      category.name.toLowerCase().includes(keyWord.trim().toLowerCase())
+    );
   }
 }

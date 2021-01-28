@@ -1,10 +1,25 @@
-<div class="row my-3">
-  <div class="mx-auto">
-    <h2>List of categories</h2>
+<div class="row mt-3">
+  <div class="col-md-4 offset-4">
+    <h2>List of Categories</h2>
+  </div>
+  <div class="col-md-4">
+    <div class="input-group rounded">
+      <input
+        type="text"
+        class="form-control rounded"
+        placeholder="Search"
+        aria-label="Search"
+        aria-describedby="search-addon"
+        (keyup)="search($event)"
+      />
+      <span class="input-group-text border-0" id="search-addon">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
   </div>
 </div>
 
-<div class="row mb-3">
+<div class="row mb-3 mt-3">
   <div class="col-md-4" *ngFor="let category of categories">
     <div class="card border-primary mb-3 mx-auto" style="max-width: 20rem">
       <div class="card-header">

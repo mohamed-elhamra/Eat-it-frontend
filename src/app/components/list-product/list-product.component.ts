@@ -15,6 +15,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 })
 export class ListProductComponent implements OnInit {
   products: ProductResponse[];
+  tempProducts: ProductResponse[];
 
   constructor(
     private dialog: MatDialog,
@@ -35,6 +36,7 @@ export class ListProductComponent implements OnInit {
               'Eat it'
             );
           this.products = res;
+          this.tempProducts = res;
         },
         (err) => {
           this.toastr.error('Something went wrong, try later', 'Eat it');
@@ -113,5 +115,15 @@ export class ListProductComponent implements OnInit {
         );
       }
     });
+  }
+
+  search(event: any) {
+    const keyWord: string = event.target.value;
+    if (!keyWord) {
+      this.products = this.tempProducts;
+    }
+    this.products = this.tempProducts.filter((product) =>
+      product.name.toLowerCase().includes(keyWord.trim().toLowerCase())
+    );
   }
 }
