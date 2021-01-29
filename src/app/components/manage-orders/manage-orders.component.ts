@@ -52,7 +52,7 @@ export class ManageOrdersComponent implements OnInit {
       (orderProduct) =>
         (total = total + orderProduct.price * orderProduct.quantity)
     );
-    return total;
+    return total.toFixed(2);
   }
 
   userDetails() {
