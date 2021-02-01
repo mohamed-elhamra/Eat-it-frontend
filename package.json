@@ -23,6 +23,7 @@
     "@angular/router": "~10.0.9",
     "@material/dialog": "^9.0.0",
     "@sweetalert2/ngx-sweetalert2": "^9.0.0",
+    "@swimlane/ngx-datatable": "^19.0.0",
     "bootstrap": "^4.6.0",
     "bootswatch": "^4.5.3",
     "font-awesome": "^4.7.0",

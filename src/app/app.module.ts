@@ -23,6 +23,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ChangeStatusComponent } from './components/change-status/change-status.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     ChangeStatusComponent,
     EditProductComponent,
     UserDetailsComponent,
+    StatisticsComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     ToastrModule.forRoot(),
     SweetAlert2Module.forRoot(),
     MatDialogModule,
+    NgxDatatableModule,
   ],
   providers: [
     {

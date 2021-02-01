@@ -1,3 +1,4 @@
+import { OrdersNumberByUserResponse } from './../models/ordersNumberByUser.response';
 import { environment } from './../../environments/environment';
 import { OrderResponse } from './../models/order.response';
 import { Observable } from 'rxjs';
@@ -24,4 +25,8 @@ export class OrderService {
       formData
     );
   }
+
+  /* ordersNumberByUser(): Observable<Or>{
+    return this.http.get<OrdersNumberByUserResponse>
+  } */
 }

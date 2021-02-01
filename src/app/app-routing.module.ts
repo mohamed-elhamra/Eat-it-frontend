@@ -1,3 +1,4 @@
+import { StatisticsComponent } from './components/statistics/statistics.component';
 import { ManageOrdersComponent } from './components/manage-orders/manage-orders.component';
 import { AfterAuthGuard } from './security/after-auth.guard';
 import { BeforeAuthGuard } from './security/before-auth.guard';
@@ -20,6 +21,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent, canActivate: [AfterAuthGuard] },
   { path: 'register', component: RegistrationComponent },
+  { path: 'statistics', component: StatisticsComponent },
   {
     path: 'orders',
     component: ManageOrdersComponent,
