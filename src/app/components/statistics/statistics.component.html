@@ -1,42 +1,28 @@
-<div class="row col-md-10 offset-1 mt-5">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#home"
-        >Top Rated Clients</a
-      >
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#profile"
-        >Products Statistics</a
-      >
-    </li>
-  </ul>
-
-  <div id="myTabContent" class="tab-content mt-4">
-    <div class="tab-pane fade show active" id="home">
-      <div class="row">
-        <div class="col-md-7">
-          <ngx-datatable [rows]="rows" [columns]="columns"> </ngx-datatable>
+<div class="row my-auto">
+  <div class="col-md-12">
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="Top Rated Clients">
+        <div class="row mt-5">
+          <div class="col-md-5">
+            <ngx-datatable [rows]="rows" [columns]="columns"> </ngx-datatable>
+          </div>
+          <div class="col-md-7">
+            <ngx-charts-bar-vertical
+              [view]="[500, 300]"
+              [results]="statistics"
+              [xAxisLabel]="'Clients'"
+              [yAxisLabel]="'Nb of Orders'"
+              [showXAxisLabel]="true"
+              [showYAxisLabel]="true"
+              [xAxis]="true"
+              [yAxis]="true"
+              [gradient]="true"
+            >
+            </ngx-charts-bar-vertical>
+          </div>
         </div>
-        <div class="col-md-5">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-            fugiat ratione aspernatur necessitatibus sint delectus culpa,
-            dignissimos doloribus veniam placeat ut nobis deleniti qui quod
-            consectetur perferendis ex totam dicta!
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="tab-pane fade" id="profile">
-      <p>
-        Food truck fixie locavore, accusamus mcsweeney's marfa nulla
-        single-origin coffee squid. Exercitation +1 labore velit, blog sartorial
-        PBR leggings next level wes anderson artisan four loko farm-to-table
-        craft beer twee. Qui photo booth letterpress, commodo enim craft beer
-        mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud
-        organic, assumenda labore aesthetic magna delectus mollit.
-      </p>
-    </div>
+      </mat-tab>
+      <mat-tab label="Second"> Content 2 </mat-tab>
+    </mat-tab-group>
   </div>
 </div>

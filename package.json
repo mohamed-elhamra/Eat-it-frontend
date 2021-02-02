@@ -12,7 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.0.9",
-    "@angular/cdk": "^11.1.0",
+    "@angular/cdk": "^11.1.1",
     "@angular/common": "~10.0.9",
     "@angular/compiler": "~10.0.9",
     "@angular/core": "~10.0.9",
@@ -23,6 +23,7 @@
     "@angular/router": "~10.0.9",
     "@material/dialog": "^9.0.0",
     "@sweetalert2/ngx-sweetalert2": "^9.0.0",
+    "@swimlane/ngx-charts": "^17.0.0",
     "@swimlane/ngx-datatable": "^19.0.0",
     "bootstrap": "^4.6.0",
     "bootswatch": "^4.5.3",

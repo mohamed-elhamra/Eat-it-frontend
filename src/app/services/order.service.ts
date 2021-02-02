@@ -26,7 +26,9 @@ export class OrderService {
     );
   }
 
-  /* ordersNumberByUser(): Observable<Or>{
-    return this.http.get<OrdersNumberByUserResponse>
-  } */
+  ordersNumberByUser(): Observable<OrdersNumberByUserResponse[]> {
+    return this.http.get<OrdersNumberByUserResponse[]>(
+      `${environment.apiURL}/orders/ordersNumberByUser`
+    );
+  }
 }

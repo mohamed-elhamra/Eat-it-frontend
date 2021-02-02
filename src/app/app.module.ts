@@ -25,6 +25,8 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ToastrModule.forRoot(),
     SweetAlert2Module.forRoot(),
     MatDialogModule,
+    MatTabsModule,
     NgxDatatableModule,
+    NgxChartsModule,
   ],
   providers: [
     {

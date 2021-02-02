@@ -1,3 +1,7 @@
+import { async } from '@angular/core/testing';
+import { ToastrService } from 'ngx-toastr';
+import { OrderService } from './../../services/order.service';
+import { OrdersNumberByUserResponse } from './../../models/ordersNumberByUser.response';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,18 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./statistics.component.css'],
 })
 export class StatisticsComponent implements OnInit {
-  rows = [
-    {
-      clientPublicId: 's15siHl4M6J5uk9',
-      clientFullName: 'Said Elhamra',
-      numberOfOrders: 7,
-    },
-    {
-      clientPublicId: 'PQaQ9qiQw2BbAgr',
-      clientFullName: 'Mohamed ELHAMRA',
-      numberOfOrders: 2,
-    },
-  ];
+  rows: OrdersNumberByUserResponse[];
   columns = [
     {
       name: 'Client ID',
@@ -34,7 +27,33 @@ export class StatisticsComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  statistics = [];
 
-  ngOnInit(): void {}
+  constructor(
+    private orderService: OrderService,
+    private toastr: ToastrService
+  ) {}
+
+  ngOnInit(): void {
+    this.init();
+  }
+
+  init() {
+    this.orderService.ordersNumberByUser().subscribe(
+      (res) => {
+        let data = [];
+        res.forEach((elmt) => {
+          data.push({
+            name: elmt.clientFullName,
+            value: elmt.numberOfOrders,
+          });
+        });
+        this.statistics = data;
+        this.rows = res;
+      },
+      (err) => {
+        this.toastr.error('Something went wrong, try later', 'Eat it');
+      }
+    );
+  }
 }
