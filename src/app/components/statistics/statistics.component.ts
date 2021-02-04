@@ -3,6 +3,9 @@ import { ToastrService } from 'ngx-toastr';
 import { OrderService } from './../../services/order.service';
 import { OrdersNumberByUserResponse } from './../../models/ordersNumberByUser.response';
 import { Component, OnInit } from '@angular/core';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { UserDetailsComponent } from '../user-details/user-details.component';
 
 @Component({
   selector: 'app-statistics',
@@ -29,7 +32,12 @@ export class StatisticsComponent implements OnInit {
 
   statistics = [];
 
+  selected: any[] = [];
+  ColumnMode = ColumnMode;
+  SelectionType = SelectionType;
+
   constructor(
+    private dialog: MatDialog,
     private orderService: OrderService,
     private toastr: ToastrService
   ) {}
@@ -55,5 +63,15 @@ export class StatisticsComponent implements OnInit {
         this.toastr.error('Something went wrong, try later', 'Eat it');
       }
     );
+  }
+
+  onSelect(event) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width = '40%';
+    dialogConfig.data = this.selected[0].clientPublicId;
+
+    this.dialog.open(UserDetailsComponent, dialogConfig);
   }
 }

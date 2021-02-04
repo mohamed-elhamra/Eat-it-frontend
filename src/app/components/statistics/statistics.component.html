@@ -4,10 +4,23 @@
       <mat-tab label="Top Rated Clients">
         <div class="row mt-5">
           <div class="col-md-5">
-            <ngx-datatable [rows]="rows" [columns]="columns"> </ngx-datatable>
+            <ngx-datatable
+              class="material selection-cell"
+              [columnMode]="ColumnMode.force"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [rowHeight]="50"
+              [rows]="rows"
+              [columns]="columns"
+              [selected]="selected"
+              [selectionType]="SelectionType.single"
+              (select)="onSelect($event)"
+            >
+            </ngx-datatable>
           </div>
           <div class="col-md-7">
             <ngx-charts-bar-vertical
+              class="my-auto"
               [view]="[500, 300]"
               [results]="statistics"
               [xAxisLabel]="'Clients'"
@@ -22,7 +35,7 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="Second"> Content 2 </mat-tab>
+      <mat-tab label="Second"> </mat-tab>
     </mat-tab-group>
   </div>
 </div>
