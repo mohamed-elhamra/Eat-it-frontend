@@ -5,7 +5,7 @@
         <div class="row mt-5">
           <div class="col-md-5">
             <ngx-datatable
-              class="material selection-cell"
+              class="material selection-cell ml-3"
               [columnMode]="ColumnMode.force"
               [headerHeight]="50"
               [footerHeight]="50"
@@ -24,7 +24,7 @@
               [view]="[500, 300]"
               [results]="statistics"
               [xAxisLabel]="'Clients'"
-              [yAxisLabel]="'Nb of Orders'"
+              [yAxisLabel]="'Nbr of Orders'"
               [showXAxisLabel]="true"
               [showYAxisLabel]="true"
               [xAxis]="true"
@@ -35,7 +35,52 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="Second"> </mat-tab>
+
+      <mat-tab label="Products Statistics">
+        <div class="row mt-4">
+          <div class="col-md-6 offset-3">
+            <div class="form-group">
+              <select [formControl]="category" class="custom-select">
+                <option value="">Select a category</option>
+                <option *ngFor="let c of categories" value="{{ c.publicId }}">
+                  {{ c.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <fieldset *ngIf="category.value">
+          <div class="row offset-4 mt-3">
+            <div class="col-md-3">
+              <div class="custom-control custom-radio ml-auto">
+                <input
+                  type="radio"
+                  id="customRadio1"
+                  name="period"
+                  class="custom-control-input"
+                  checked=""
+                />
+                <label class="custom-control-label" for="customRadio1"
+                  >Last Month</label
+                >
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="custom-control custom-radio">
+                <input
+                  type="radio"
+                  id="customRadio2"
+                  name="period"
+                  class="custom-control-input"
+                />
+                <label class="custom-control-label" for="customRadio2"
+                  >Last Seven days</label
+                >
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </mat-tab>
     </mat-tab-group>
   </div>
 </div>

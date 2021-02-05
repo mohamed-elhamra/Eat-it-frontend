@@ -16,7 +16,7 @@
           id="category"
           [class.is-invalid]="category.invalid && category.touched"
         >
-          <option value="">Choose category</option>
+          <option value="">Choose a category</option>
           <option
             *ngFor="let category of categories"
             value="{{ category.publicId }}"

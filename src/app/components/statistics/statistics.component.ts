@@ -1,4 +1,4 @@
-import { async } from '@angular/core/testing';
+import { CategoryService } from './../../services/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { OrderService } from './../../services/order.service';
 import { OrdersNumberByUserResponse } from './../../models/ordersNumberByUser.response';
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UserDetailsComponent } from '../user-details/user-details.component';
+import { FormControl } from '@angular/forms';
+import { CategoryResponse } from 'src/app/models/category.response';
 
 @Component({
   selector: 'app-statistics',
@@ -13,6 +15,8 @@ import { UserDetailsComponent } from '../user-details/user-details.component';
   styleUrls: ['./statistics.component.css'],
 })
 export class StatisticsComponent implements OnInit {
+  categories: CategoryResponse[];
+  category = new FormControl('');
   rows: OrdersNumberByUserResponse[];
   columns = [
     {
@@ -24,7 +28,7 @@ export class StatisticsComponent implements OnInit {
       prop: 'clientFullName',
     },
     {
-      name: 'Nb of orders',
+      name: 'Nbr of orders',
       prop: 'numberOfOrders',
       cellClass: 'text-center',
     },
@@ -37,16 +41,18 @@ export class StatisticsComponent implements OnInit {
   SelectionType = SelectionType;
 
   constructor(
+    private categoryService: CategoryService,
     private dialog: MatDialog,
     private orderService: OrderService,
     private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.init();
+    this.getOrdersNumberByUser();
+    this.getCategories();
   }
 
-  init() {
+  getOrdersNumberByUser() {
     this.orderService.ordersNumberByUser().subscribe(
       (res) => {
         let data = [];
@@ -58,6 +64,17 @@ export class StatisticsComponent implements OnInit {
         });
         this.statistics = data;
         this.rows = res;
+      },
+      (err) => {
+        this.toastr.error('Something went wrong, try later', 'Eat it');
+      }
+    );
+  }
+
+  getCategories() {
+    this.categoryService.getAll().subscribe(
+      (res) => {
+        this.categories = res;
       },
       (err) => {
         this.toastr.error('Something went wrong, try later', 'Eat it');
