@@ -40,7 +40,11 @@
         <div class="row mt-4">
           <div class="col-md-6 offset-3">
             <div class="form-group">
-              <select [formControl]="category" class="custom-select">
+              <select
+                [formControl]="category"
+                class="custom-select"
+                (change)="handleChangeCategory()"
+              >
                 <option value="">Select a category</option>
                 <option *ngFor="let c of categories" value="{{ c.publicId }}">
                   {{ c.name }}
@@ -49,37 +53,82 @@
             </div>
           </div>
         </div>
-        <fieldset *ngIf="category.value">
-          <div class="row offset-4 mt-3">
-            <div class="col-md-3">
-              <div class="custom-control custom-radio ml-auto">
-                <input
-                  type="radio"
-                  id="customRadio1"
-                  name="period"
-                  class="custom-control-input"
-                  checked=""
-                />
-                <label class="custom-control-label" for="customRadio1"
-                  >Last Month</label
-                >
+
+        <div class="jumbotron" *ngIf="category.value">
+          <fieldset>
+            <div class="row offset-4">
+              <div class="col-md-3">
+                <div class="custom-control custom-radio ml-auto">
+                  <input
+                    type="radio"
+                    id="customRadio1"
+                    name="period"
+                    value="LAST_MONTH"
+                    [formControl]="period"
+                    class="custom-control-input"
+                    checked=""
+                    (change)="handleChangeDuration()"
+                  />
+                  <label class="custom-control-label" for="customRadio1"
+                    >Last Month</label
+                  >
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="custom-control custom-radio">
+                  <input
+                    type="radio"
+                    id="customRadio2"
+                    name="period"
+                    value="LAST_SEVEN_DAYS"
+                    [formControl]="period"
+                    class="custom-control-input"
+                    (change)="handleChangeDuration()"
+                  />
+                  <label class="custom-control-label" for="customRadio2"
+                    >Last Seven days</label
+                  >
+                </div>
               </div>
             </div>
-            <div class="col-md-3">
-              <div class="custom-control custom-radio">
-                <input
-                  type="radio"
-                  id="customRadio2"
-                  name="period"
-                  class="custom-control-input"
-                />
-                <label class="custom-control-label" for="customRadio2"
-                  >Last Seven days</label
+            <div class="row">
+              <div class="col-md-12 mx-auto">
+                <ngx-charts-pie-chart
+                  [results]="productsNumberOfCommands"
+                  [legend]="true"
+                  [legendTitle]="'Number of commands'"
+                  [view]="[1000, 300]"
+                  [labels]="true"
                 >
+                </ngx-charts-pie-chart>
               </div>
             </div>
-          </div>
-        </fieldset>
+            <div class="row">
+              <div class="col-md-12 mx-auto">
+                <ngx-charts-pie-chart
+                  [results]="productsQuantities"
+                  [legend]="true"
+                  [legendTitle]="'Quantities'"
+                  [view]="[1000, 300]"
+                  [labels]="true"
+                >
+                </ngx-charts-pie-chart>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 mx-auto">
+                <ngx-charts-pie-chart
+                  [results]="quantitiesPerNumberOfCommands"
+                  [legend]="true"
+                  [legendTitle]="'Quant / commands nbr'"
+                  [view]="[1000, 300]"
+                  [labels]="true"
+                >
+                </ngx-charts-pie-chart>
+              </div>
+            </div>
+          </fieldset>
+        </div>
       </mat-tab>
     </mat-tab-group>
   </div>
