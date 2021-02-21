@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: 'http://192.168.1.195:8080/api/v1',
+  apiURL: 'http://[SERVER_IP_ADDRESS]:8080/api/v1',
 };
 
 /*
