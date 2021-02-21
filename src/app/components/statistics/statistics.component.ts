@@ -19,7 +19,7 @@ import { Duration } from './../../models/duration.enum';
 export class StatisticsComponent implements OnInit {
   categories: CategoryResponse[];
   category = new FormControl('');
-  period = new FormControl('LAST_MONTH');
+  period = new FormControl('');
 
   productsNumberOfCommands = [];
   productsQuantities = [];
@@ -128,6 +128,7 @@ export class StatisticsComponent implements OnInit {
           },
           (err) => {
             this.toastr.error('Something went wrong, try later', 'Eat it');
+            console.log(err);
           }
         );
     } catch (error) {
@@ -136,7 +137,7 @@ export class StatisticsComponent implements OnInit {
   }
 
   handleChangeCategory() {
-    this.getProductsStatistics(this.category.value, Duration.LAST_MONTH);
+    this.getProductsStatistics(this.category.value, this.period.value);
   }
 
   handleChangeDuration() {

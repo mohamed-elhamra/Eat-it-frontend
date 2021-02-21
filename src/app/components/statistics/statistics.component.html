@@ -56,8 +56,24 @@
 
         <div class="jumbotron" *ngIf="category.value">
           <fieldset>
-            <div class="row offset-4">
-              <div class="col-md-3">
+            <div class="row offset-3">
+              <div class="col-md-2">
+                <div class="custom-control custom-radio">
+                  <input
+                    type="radio"
+                    id="customRadio3"
+                    name="period"
+                    value=""
+                    [formControl]="period"
+                    class="custom-control-input"
+                    (change)="handleChangeDuration()"
+                  />
+                  <label class="custom-control-label" for="customRadio3"
+                    >None</label
+                  >
+                </div>
+              </div>
+              <div class="col-md-2">
                 <div class="custom-control custom-radio ml-auto">
                   <input
                     type="radio"
